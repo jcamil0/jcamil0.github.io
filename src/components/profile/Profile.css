@@ -28,8 +28,11 @@
 .profile_image img {
   width: 100%;
 }
-
-
+.profile_information{
+  top:0;
+  left: 0;
+  margin: -44px 10px 30px ;
+}
 /* figure {
     display: block;
     margin-block-start: 0px;
@@ -37,3 +40,22 @@
     margin-inline-start: 0px;
     margin-inline-end: 0px;
 } */
+.timelineIten_text{
+  font-size: 13.5px !important;
+  color :gray;
+}
+.timelineIten_text >a {
+text-decoration: none;
+}
+
+.timelineIten_text >span{
+  color :black;
+}
+
+
+.profile .button_container{
+  width: 100%;
+  display: flex !important;
+  justify-content: center;
+margin-top: 20px;
+}

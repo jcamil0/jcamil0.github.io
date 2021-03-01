@@ -1,10 +1,9 @@
 .timeline {
   padding: 0 !important;
 }
-
 /* header title */
 .timeline .timeline_header {
-  padding-top: 7px;
+  padding-top: 12px;
 }
 
 .timeline .timeline_fistItem {
@@ -13,9 +12,11 @@
 .timeline .MuiTimelineItem-root {
   min-height: 0px;
 }
+
 .timeline .MuiTimelineItem-missingOppositeContent::before {
   display: none;
 }
+
 .timeline .timeline_dot_header {
   color: black !important;
   background-color: var(--main-color) !important;
@@ -28,13 +29,15 @@
   border-color: black  !important;
   padding: 2px !important;
 }
-.timeline .MuiTimelineConnector-root {
-  background-color: #eee !important;
+
+.timeline .timeline_dot  {
+  background-color:gray;
 }
 
 .MuiTimelineDot-root {
   background-color: var(--main-color) !important;
 }
 .timeline .separator_padding{
-    padding-left: 18px !important;
+    padding-left: 4px !important;
 }
+
