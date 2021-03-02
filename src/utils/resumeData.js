@@ -1,6 +1,6 @@
 import React from 'react'
 
-import {Facebook,GitHub,Instagram} from '@material-ui/icons';
+import { Facebook, GitHub, Instagram, WebAsset } from '@material-ui/icons';
 
 
 export default {
@@ -12,33 +12,45 @@ export default {
         "city": "cali - colombia",
         "phone": "+57 3123364645",
         "mail": "jcamilo.llanos@hotmail.com",
-        "summary": "enlorenlorenlorenlorenlorenlorenlorenlorenlorenlorenlorenlorenlorenloren"
+        "summary": "sadaddsadasa"
     },
     "social": [
         {
             "name": "facebook",
             "link": "https://facebook.com/",
-            "icon": <Facebook/>,
+            "icon": <Facebook />,
         },
 
         {
             "name": "instagram",
             "link": "https://www.instagram.com/",
-            "icon": <GitHub/>,
+            "icon": <GitHub />,
         },
         {
             "name": "github",
             "link": "https://github.com/jcamil0",
-            "icon": <Instagram/>
+            "icon": <Instagram />
         }
     ],
     "experiences": [
         {
-            "company": "",
+            "company": "asdasdas",
             "picture": "",
-            "location": "",
-            "title": "",
-            "period": "",
+            "location": "asdasdasdasd",
+            "title": "hola ",
+            "period": "2020 2020",
+            "description": [
+                "",
+                "",
+                "."
+            ]
+        },
+        {
+            "company": "intyel",
+            "picture": "",
+            "location": "google ",
+            "title": "hola ",
+            "period": "200 202020",
             "description": [
                 "",
                 "",
@@ -49,10 +61,10 @@ export default {
     ],
     "educations": [
         {
-            "title": "",
-            "city": "",
-            "degree": "",
-            "period": "",
+            "title": "luis carlos galan",
+            "city": "cali",
+            "degree": "bachillerato",
+            "period": "2016",
             "university": "",
             "picture": ""
         },
@@ -60,12 +72,34 @@ export default {
     ],
     "skills": [
         {
-            "name": "Python",
-            "icon": [
-                "fab",
-                "python"
-            ]
+            "name": "front-end",
+            "description": ["html", "css", "angular", "vue"]
         },
+        {
+            "name": "front-end",
+            "description": ["html", "css", "angular", "vue"]
+        }, {
+            "name": "front-end",
+            "description": ["html", "css", "angular", "vue"]
+        }
 
+
+    ],
+    "services": [
+        {
+            "title": "desarrolaldor web",
+            "description": "desarrollo paginas web en react y angular",
+            "icon": <WebAsset />,
+        },
+        {
+            "title": "desarrolaldor web",
+            "description": "desarrollo paginas web en react y angular",
+            "icon": <WebAsset />,
+        },
+        {
+            "title": "desarrolaldor web",
+            "description": "desarrollo paginas web en react y angular",
+            "icon": <WebAsset />,
+        }
     ]
 }

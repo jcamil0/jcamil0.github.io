@@ -7,7 +7,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
   background-color: white;
   overflow-x: hidden;
-  /* background: url('./assets/img/background.jpg'); */
+   /* background: url('./assets/img/background.jpg');  */
 }
 html {
   height: 100%;

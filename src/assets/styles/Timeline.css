@@ -27,7 +27,7 @@
 .timeline .timeline_dot {
   color: black;
   border-color: black  !important;
-  padding: 2px !important;
+  padding: 3spx !important;
 }
 
 .timeline .timeline_dot  {
@@ -38,6 +38,6 @@
   background-color: var(--main-color) !important;
 }
 .timeline .separator_padding{
-    padding-left: 20px !important;
+    padding-left: 18px !important;
 }
 
