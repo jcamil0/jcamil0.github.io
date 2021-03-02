@@ -1,35 +1,35 @@
 import React from 'react'
 
-import FacebookIcon from '@material-ui/icons/Facebook';
-import GithubIcon from '@material-ui/icons/GitHub';
+import {Facebook,GitHub,Instagram} from '@material-ui/icons';
+
 
 export default {
     "profile": {
-        "firstname": "JUAN CAMILO",
+        "firstname": "juan camilo",
         "lastname": "llanos",
         "title": "programador junior",
         "photo": "",
         "city": "cali - colombia",
         "phone": "+57 3123364645",
         "mail": "jcamilo.llanos@hotmail.com",
-        "summary": ""
+        "summary": "enlorenlorenlorenlorenlorenlorenlorenlorenlorenlorenlorenlorenlorenloren"
     },
     "social": [
         {
             "name": "facebook",
             "link": "https://facebook.com/",
-            "icon": <FacebookIcon/>,
+            "icon": <Facebook/>,
         },
 
         {
             "name": "instagram",
             "link": "https://www.instagram.com/",
-            "icon": <GithubIcon/>,
+            "icon": <GitHub/>,
         },
         {
             "name": "github",
             "link": "https://github.com/jcamil0",
-            "icon": <GithubIcon/>
+            "icon": <Instagram/>
         }
     ],
     "experiences": [

@@ -1,16 +1,15 @@
-import { Typography } from '@material-ui/core'
 import React from 'react'
-import CustomTimeline, { CustomTimelineSeparator } from '../timeline/Timeline'
-import PersonOutlineOutlinedIcon from '@material-ui/icons/PersonOutlineOutlined';
-import GetApp from '@material-ui/icons/GetApp';
-import TimelineItem from '@material-ui/lab/Timeline';
-import TimelineContent from '@material-ui/lab/TimelineContent';
+import { Typography } from '@material-ui/core'
 
-import './Profile.css'
-import profileimg from '../../assets/img/cj_profile.jpg'
-import Personaldata from '../../utils/resumeData'
+import {PersonOutlineOutlined ,GetApp}from '@material-ui/icons';
+import {TimelineContent,TimelineItem} from '@material-ui/lab';
 
-import CustomButton from '../button/Button'
+import CustomTimeline, { CustomTimelineSeparator } from '../components/Timeline'
+import profileimg from '../assets/img/cj_profile.jpg'
+import Personaldata from '../utils/resumeData'
+import CustomButton from '../components/Button'
+
+import '../assets/styles/Profile.css'
 
 const CustomTimelineItem = ({ title, text, link }) => (
     <TimelineItem>
@@ -40,14 +39,11 @@ const Profile = () => {
             <div className="profile_image">
                 <img src={profileimg} alt={Personaldata.profile.firstname} />
             </div>
-            {/*
-            <figure>
-                <img src={profileimg} alt='cv' />
-            </figure> */}
+
             <div className="profile_information">
-                <CustomTimeline icon={<PersonOutlineOutlinedIcon />} >
+                <CustomTimeline icon={<PersonOutlineOutlined />} >
                     <CustomTimelineItem title='Name' text={Personaldata.profile.firstname} />
-                    <CustomTimelineItem title='Number' text={Personaldata.profile.photo} />
+                    <CustomTimelineItem title='Number' text={Personaldata.profile.phone} />
                     <CustomTimelineItem title='Email' text={Personaldata.profile.mail} />
 
                     {Object.keys(Personaldata.social).map(key => (
@@ -58,7 +54,6 @@ const Profile = () => {
                 <div className="button_container">
                     <CustomButton text={"Download Cv"} icon={<GetApp />} />
                 </div>
-
             </div>
         </div>
     )

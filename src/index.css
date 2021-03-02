@@ -6,11 +6,10 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-color: white;
-   overflow: scroll;
-   /* background: url('./assets/img/background.jpg'); */
-
+  overflow-x: hidden;
+  /* background: url('./assets/img/background.jpg'); */
 }
-html{
+html {
   height: 100%;
 }
 

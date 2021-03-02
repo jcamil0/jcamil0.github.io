@@ -2,10 +2,10 @@ import React from 'react'
 import { NavDropdown, Navbar, Form, Nav, FormControl, Button } from 'react-bootstrap'
 import { Link, NavLink, withRouter } from 'react-router-dom'
 import { Home, Telegram } from '@material-ui/icons'
-import Personaldata from '../../utils/resumeData'
-import CustomButton from '../button/Button'
+import Personaldata from '../utils/resumeData'
+import CustomButton from '../components/Button'
 
-import './header.css'
+import '../assets/styles/header.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 const Header = (props) => {

@@ -23,39 +23,32 @@
 
 .profile_image {
   margin-top: -10px;
-   clip-path: polygon(0 9%, 100% 0, 100% 94%, 0% 100%);
+  clip-path: polygon(0 9%, 100% 0, 100% 94%, 0% 100%);
 }
 .profile_image img {
   width: 100%;
 }
-.profile_information{
-  top:0;
+.profile_information {
+  top: 0;
   left: 0;
-  margin: -44px 10px 30px ;
+  margin: -44px 10px 30px;
 }
-/* figure {
-    display: block;
-    margin-block-start: 0px;
-    margin-block-end: 0px;
-    margin-inline-start: 0px;
-    margin-inline-end: 0px;
-} */
-.timelineIten_text{
+
+.timelineIten_text {
   font-size: 13.5px !important;
-  color :gray;
+  color: gray;
 }
-.timelineIten_text >a {
-text-decoration: none;
-}
-
-.timelineIten_text >span{
-  color :black;
+.timelineIten_text > a {
+  text-decoration: none;
 }
 
+.timelineIten_text > span {
+  color: black;
+}
 
-.profile .button_container{
+.profile .button_container {
   width: 100%;
   display: flex !important;
   justify-content: center;
-margin-top: 20px;
+  margin-top: 20px;
 }
