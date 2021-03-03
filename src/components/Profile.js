@@ -1,8 +1,8 @@
 import React from 'react'
 import { Typography } from '@material-ui/core'
 
-import {PersonOutlineOutlined ,GetApp}from '@material-ui/icons';
-import {TimelineContent,TimelineItem} from '@material-ui/lab';
+import { PersonOutlineOutlined, GetApp } from '@material-ui/icons';
+import { TimelineContent, TimelineItem } from '@material-ui/lab';
 
 import CustomTimeline, { CustomTimelineSeparator } from '../components/Timeline'
 import profileimg from '../assets/img/cj_profile.jpg'
@@ -46,8 +46,8 @@ const Profile = () => {
                     <CustomTimelineItem title='Number' text={Personaldata.profile.phone} />
                     <CustomTimelineItem title='Email' text={Personaldata.profile.mail} />
 
-                    {Object.keys(Personaldata.social).map(key => (
-                        <CustomTimelineItem title={key} text={Personaldata.social[key].name}
+                    {Object.keys(Personaldata.social).map((key, i) => (
+                        <CustomTimelineItem key={key} title={key} text={Personaldata.social[key].name}
                             link={Personaldata.social[key].link}
                         />))}
                 </CustomTimeline>

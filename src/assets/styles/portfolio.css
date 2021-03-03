@@ -1,0 +1,44 @@
+/* .customTabs .activate{
+color: var(--main-color) !important;
+
+} */
+.customTabs .custonTab_item {
+  padding: 0px !important;
+  min-width: 0px !important;
+  margin-right: 20px !important;
+  text-transform: inherit !important;
+  font-size: 14px;
+  font-weight: 400;
+  outline-width: 0px !important;
+}
+.customTabs {
+  height: 100%;
+  max-height: 350px;
+  box-shadow: 0px 0px 48px 0px rgba(4, 6, 4, 0.08) !important;
+  border-radius: 5px;
+  overflow: hidden;
+  outline-width: 0px !important ;
+}
+
+.customCard .customCard_title {
+  font-weight: 500;
+}
+.customCard .customCard_caption{
+    color: gray !important;
+    font-weight: 500;
+}
+ .proyectDialog_img{
+    width: 100%;
+    max-height: 300px;
+    object-fit: cover;
+    object-position: center center;
+}
+.proyectDialog_actions{
+    justify-content: center !important;
+    margin-bottom: 10px;
+}
+.proyectDialog_description{
+    margin-top: 10px !important;
+    /* color: red; */
+    font-size: 20px !important;
+}

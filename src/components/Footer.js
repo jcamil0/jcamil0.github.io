@@ -13,7 +13,7 @@ const Foorter = () => {
             <div className="footer_right">
                 <Typography className='footer_copyright'>
                     Devolepment and desing{" "}
-                    <a href="/">
+                    <a href="https://github.com/jcamil0">
                         {Personaldata.profile.firstname} {Personaldata.profile.lastname}
                     </a>
                 </Typography>

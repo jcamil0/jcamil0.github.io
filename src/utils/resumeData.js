@@ -93,17 +93,17 @@ export default {
   portfolio: [
     {
       tag: "react native ",
-      img: "image",
-      title: "app genero",
-      caption: "traler",
+      img: "https://wallpapercave.com/wp/wp3284841.gif",
+      title: "hola",
+      caption:"hola caption ",
       description: "app reacasdasdadasdasdasdasdasdasdasdasd ",
       links: [{ link: "google.com", icon: <Facebook /> }],
     },
     {
       tag: "react js  ",
-      img: "asdasd",
-      title: "app genero",
-      caption: "traler",
+      img: "https://wallpapercave.com/wp/wp3284841.gif",
+      title: "hola",
+      caption:"hola caption ",
       description: "app react asdasdasdasdasdasdasdasdasdasdasda ",
       links: [{ link: "google.com", icon: <Facebook /> }],
     },
