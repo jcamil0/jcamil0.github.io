@@ -1,29 +1,31 @@
 import React from "react";
-import { Grid, Typography, Icon, TextField } from "@material-ui/core";
+import { Grid, Typography, Icon, Paper, Grow } from "@material-ui/core";
+import { TimelineItem, TimelineContent, TimelineDot } from "@material-ui/lab";
 import CustomTimeline, {
   CustomTimelineSeparator,
-} from "../../components/Timeline";
-import Paper from "@material-ui/core/Paper";
-
+} from "../components/Timeline";
 import { Work } from "@material-ui/icons";
-import "../../assets/styles/resume.css";
-import Personaldata from "../../utils/resumeData";
-import { TimelineItem, TimelineContent, TimelineDot } from "@material-ui/lab";
+
+import "../assets/styles/resume.css";
+import Personaldata from "../utils/resumeData";
 
 const Resume = () => {
   return (
     <>
       {/* about me */}
-      <Grid container className="section pd_45 pt_45">
-        <Grid item className="section_title">
-          <span></span>
-          <h6 className="section_text">about me</h6>
+      <Grow in timeout={900}>
+        <Grid container className="section pd_45 pt_45 pl_10">
+          <Grid item className="section_title">
+            <span></span>
+            <h6 className="section_text">about me</h6>
+          </Grid>
+          <Grid item xs={12}>
+            <Typography>{Personaldata.profile.summary}</Typography>
+          </Grid>
         </Grid>
-        <Grid item xs={12}>
-          <Typography>{Personaldata.profile.summary}</Typography>
-        </Grid>
-      </Grid>
+      </Grow>
 
+      <Grow in timeout={980}>
       {/* resume title */}
       <Grid container className="section pd_45">
         <Grid item className="section_title  mb_30">
@@ -75,7 +77,7 @@ const Resume = () => {
           </Grid>
         </Grid>
       </Grid>
-
+</Grow>
       {/* services  */}
       <Grid container className="section pd_45">
         <Grid item className="section_title mb_30">
@@ -124,97 +126,6 @@ const Resume = () => {
                 </Paper>
               </Grid>
             ))}
-          </Grid>
-        </Grid>
-      </Grid>
-
-      {/* contac */}
-      <Grid container className="section pt_45 pd_45 ">
-        {/* contact form */}
-        <Grid container spacing={3}>
-          <Grid item xs={12} lg={7}>
-            <Grid container>
-              <Grid item className="section_title mb_30">
-                <span></span>
-                <h6 className="section_text">contact form </h6>
-              </Grid>
-
-              <Grid item xs={12}>
-                <Grid container spacing={3}>
-                  <Grid item xs={12} sm={6}>
-                    <TextField fullWidth name="name" label="name" />
-                  </Grid>
-
-                  <Grid item xs={12} sm={6}>
-                    <TextField fullWidth name="email" label="email" />
-                  </Grid>
-                  <Grid item xs={12}>
-                    <TextField
-                      fullWidth
-                      name="mesage"
-                      label="message"
-                      multiline
-                      rows={4}
-                    />
-                  </Grid>
-
-                  <Grid item xs={12}>
-                    {/* button here  */}
-                  </Grid>
-                </Grid>
-              </Grid>
-            </Grid>
-          </Grid>
-
-          <Grid item xs={12} lg={5}>
-            <Grid container>
-              <Grid item className="section_title mb_30">
-                <span></span>
-                <h6 className="section_text">contact Informaion </h6>
-              </Grid>
-
-              <Grid item xs={12}>
-                <Grid container spacing={2}>
-                  <Grid item xs={12}>
-                    <Typography>
-                      <span>
-                        {Personaldata.profile.firstname}{" "}
-                        {Personaldata.profile.lastname}
-                      </span>
-                    </Typography>
-                  </Grid>
-
-                  <Grid item xs={12}>
-                    <Typography>
-                      <span>{Personaldata.profile.title}</span>
-                    </Typography>
-                  </Grid>
-
-                  <Grid item xs={12}>
-                    <Typography>
-                      <span>{Personaldata.profile.city}</span>
-                    </Typography>
-                  </Grid>
-
-                  <Grid item xs={12}>
-                    <Typography>
-                      <span>{Personaldata.profile.phone}</span>
-                    </Typography>
-                  </Grid>
-                </Grid>
-              </Grid>
-              <Grid item xs={12}>
-                <Grid container>
-                  {Object.keys(Personaldata.social).map((key) => (
-                    <Grid item>
-                      <a href={Personaldata.social[key].link}>
-                        {Personaldata.social[key].icon}
-                      </a>
-                    </Grid>
-                  ))}
-                </Grid>
-              </Grid>
-            </Grid>
           </Grid>
         </Grid>
       </Grid>

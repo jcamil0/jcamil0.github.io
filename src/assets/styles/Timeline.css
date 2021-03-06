@@ -3,7 +3,7 @@
 }
 /* header title */
 .timeline .timeline_header {
-  padding-top: 12px;
+  padding-top: 15px;
 }
 
 .timeline .timeline_fistItem {
@@ -27,7 +27,7 @@
 .timeline .timeline_dot {
   color: black;
   border-color: black  !important;
-  padding: 3spx !important;
+  padding: 4px !important;
 }
 
 .timeline .timeline_dot  {

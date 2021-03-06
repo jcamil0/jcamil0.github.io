@@ -1,5 +1,6 @@
 :root {
   --main-color: #ffc500;
+  
 }
 .top_60 {
   margin-top: 60px !important;
@@ -14,6 +15,9 @@
 }
 .pd_45{
   padding-bottom: 45px  !important;
+}
+.pl_10{
+  padding-left: 10px;
 }
 .pt_45{
   padding-top: 45px !important;

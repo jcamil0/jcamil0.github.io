@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Facebook, GitHub, Instagram, WebAsset } from "@material-ui/icons";
+import { Facebook, GitHub, WebAsset ,LinkedIn} from "@material-ui/icons";
 
 export default {
   profile: {
@@ -11,24 +11,24 @@ export default {
     city: "cali - colombia",
     phone: "+57 3123364645",
     mail: "jcamilo.llanos@hotmail.com",
-    summary: "sadaddsadasa",
+    summary: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque et erat lobortis, efficitur ipsum vitae, convallis lacus. Nullam aliquam condimentum ante sed faucibus. Sed dignissim tempus sapien, efficitur rhoncus libero ultrices vel. Vestibulum porttitor efficitur libero, ac egestas massa fringilla sit amet. Integer suscipit felis eget rutrum volutpat. Donec elementum massa vitae sodales viverra. Aliquam in velit vel orci commodo suscipit at quis turpis. Mauris ac placerat enim, in iaculis nunc. Mauris nisl orci, imperdiet ut mauris ac, gravida tempus velit. Quisque porttitor nibh ac eros rhoncus, vitae egestas felis tempor. Nulla suscipit laoreet egestas. Vivamus sit amet luctus dolor. Donec egestas dui id tortor tempor dapibus. ",
   },
   social: [
     {
       name: "facebook",
-      link: "https://facebook.com/",
+      link: "https://facebook.com",
       icon: <Facebook />,
     },
 
     {
       name: "instagram",
-      link: "https://www.instagram.com/",
-      icon: <GitHub />,
+      link: "https://www.linkedin.com",
+      icon: <LinkedIn />,
     },
     {
       name: "github",
       link: "https://github.com/jcamil0",
-      icon: <Instagram />,
+      icon: <GitHub />,
     },
   ],
   experiences: [

@@ -5,7 +5,7 @@
   border-radius: 6px !important;
   box-shadow: 0px 2px 92px 0px rgba(0, 0, 0, 0.07) !important;
 }
-.header .headerNavLink{
+/* .header .headerNavLink{
     padding: 0;
 }
 .header .header_link {
@@ -25,9 +25,9 @@
   border-top-left-radius: 6px;
   border-bottom-left-radius: 6px;
   /* margin-left: -20px; */
-  align-items: stretch;
+  /* align-items: stretch; */
   /* justify-content: flex-start */
-}
+/* }
 .header .header_left{
     margin-right: auto;
 }
@@ -41,4 +41,4 @@
     font-size: 16px;
     margin-right: 12px;
     color: black;
-}
+} */ 
