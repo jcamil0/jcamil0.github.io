@@ -8,56 +8,35 @@ import CustomButton from "../components/Button";
 
 import "../assets/styles/header.css";
 import "bootstrap/dist/css/bootstrap.min.css";
+import { Typography } from "@material-ui/core";
 
 const Header = (props) => {
-  const pathName = props?.location?.patname;
-
   return (
-    <Navbar bg="white" expand="lg" sticky='top'>
-      <Navbar.Brand href="/">
-        <Home />
+    <Navbar bg="dark" variant="dark" expand="lg" sticky="top">
+      <Navbar.Brand as={NavLink} to="/">
+        <Home className="icon" />
       </Navbar.Brand>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
+
       <Navbar.Collapse id="basic-navbar-nav">
-        <Nav className="mr-auto">
-          <Nav.Link
-            as={NavLink}
-            to="/"
-            // eventKey="1"
-            // className={
-            //   pathName === "/" ? "header_link_activate" : "header_link"
-            // }
-          >
-            Resume
-          </Nav.Link>
-          <Nav.Link
-            as={NavLink}
-            to="/portfolio"
-            // eventKey="2"
-            // className={
-            //   pathName === "/" ? "header_link_activate" : "header_link"
-            // }
-          >
-            Porfolio
-          </Nav.Link>
-          <Nav.Link
-            as={NavLink}
-            to="/about"
-            // eventKey="2"
-            // className={
-            //   pathName === "/" ? "header_link_activate" : "header_link"
-            // }
-          >
-            Contacto
-          </Nav.Link>
-        </Nav>
+          <Nav className="mr-auto">
+            <Nav.Link as={NavLink} to="/">
+              <Typography variant="h6">Resume</Typography>
+            </Nav.Link>
+            <Nav.Link as={NavLink} to="/portfolio">
+              <Typography variant="h6">Portafolio</Typography>
+            </Nav.Link>
+            <Nav.Link as={NavLink} to="/about">
+              <Typography variant="h6">Contacto</Typography>
+            </Nav.Link>
+          </Nav>
+
         <div className="header_right">
           {Object.keys(Personaldata.social).map((keys) => (
             <a href={Personaldata.social[keys].link} target="_blank">
               {Personaldata.social[keys].icon}
             </a>
           ))}
-          <CustomButton text="hire me" icon={<Telegram />} />
         </div>
       </Navbar.Collapse>
     </Navbar>

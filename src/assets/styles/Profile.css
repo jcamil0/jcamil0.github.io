@@ -18,8 +18,9 @@
 }
 
 .profile_name .title {
-  font-size: 17px;
+  font-size: 20px;
   color: #777;
+  font-weight: bold;
 }
 
 .profile_image {
@@ -36,8 +37,10 @@
 }
 
 .timelineIten_text {
-  font-size: 13.5px !important;
+  font-size: 15px !important;
   color: gray;
+  font-weight: bold;
+
 }
 .timelineIten_text > a {
   text-decoration: none;
@@ -50,11 +53,7 @@
 .profile .button_container {
   width: 100%;
   display: flex !important;
-  justify-content: center;
+  justify-content: center ;
   margin-top: 20px;
 }
 
-
-.profile_information .Name{
-  font-size:200px
-}

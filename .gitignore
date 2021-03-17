@@ -24,3 +24,5 @@ node_modules
 
 src/utils/resumeData.js
 src/assets/img
+.vscode
+

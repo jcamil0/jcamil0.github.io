@@ -4,9 +4,9 @@ import { Facebook, GitHub, WebAsset ,LinkedIn} from "@material-ui/icons";
 
 export default {
   profile: {
-    firstname: "juan camilo",
-    lastname: "llanos",
-    title: "programador junior",
+    firstname: "Juan camilo",
+    lastname: "Llanos",
+    title: "Programador junior",
     photo: "",
     city: "cali - colombia",
     phone: "+57 3123364645",
