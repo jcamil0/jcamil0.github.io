@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Grid, Typography, TextField, Grow } from "@material-ui/core";
 import Send from "@material-ui/icons/Email";
 import { Form } from "react-bootstrap";
+import emailjs from "emailjs-com";
 
 import CustomButton from "../components/Button";
 import Personaldata from "../utils/resumeData";
@@ -27,6 +28,26 @@ const Contact = () => {
     );
   };
 
+  function sendEmail(e) {
+    e.preventDefault();
+    emailjs
+      .sendForm(
+        "service_r5iomli",
+        "template_3491al9",
+        e.target,
+        "user_uZ8p03pidCoXyklMoUhQR"
+      )
+      .then(
+        (result) => {
+          console.log(result.text);
+        },
+        (error) => {
+          console.log(error.text);
+        }
+      );
+    e.target.reset();
+  }
+
   return (
     <>
       <Grow in timeout={1000}>
@@ -41,13 +62,13 @@ const Contact = () => {
                   <h6 className="section_text">contact form </h6>
                 </Grid>
 
-                <Form onSubmit={enviarDatos}>
+                <Form onSubmit={sendEmail}>
                   <Grid item xs={12}>
                     <Grid container spacing={3}>
                       <Grid item xs={12} sm={6}>
                         <TextField
                           fullWidth
-                          name="name"
+                          name="to_name"
                           label="name"
                           onChange={handleChange}
                         />
@@ -56,7 +77,7 @@ const Contact = () => {
                       <Grid item xs={12} sm={6}>
                         <TextField
                           fullWidth
-                          name="email"
+                          name="from_name"
                           label="email"
                           type="email"
                           onChange={handleChange}
@@ -65,7 +86,7 @@ const Contact = () => {
                       <Grid item xs={12}>
                         <TextField
                           fullWidth
-                          name="mesagge"
+                          name="message"
                           label="message"
                           onChange={handleChange}
                           multiline

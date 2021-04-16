@@ -1,10 +1,10 @@
 import React from "react";
 import { Nav, Navbar } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
-import { Home, Telegram } from "@material-ui/icons";
+import { Home } from "@material-ui/icons";
 
 import Personaldata from "../utils/resumeData";
-import CustomButton from "../components/Button";
+// import CustomButton from "../components/Button";
 
 import "../assets/styles/header.css";
 import "bootstrap/dist/css/bootstrap.min.css";

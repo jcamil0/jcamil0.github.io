@@ -1,7 +1,7 @@
 import React from "react";
 import { Button } from "@material-ui/core";
 import "../assets/styles/button.css";
-const CustomButton = ({ text, icon }) => {
+const CustomButton = ({ text, icon, _onpress }) => {
   return (
     <Button
       className="custon_btn"
