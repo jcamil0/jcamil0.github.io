@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Facebook, GitHub, WebAsset ,LinkedIn} from "@material-ui/icons";
+import { Facebook, GitHub, WebAsset, LinkedIn } from "@material-ui/icons";
 
 export default {
   profile: {
@@ -11,7 +11,8 @@ export default {
     city: "cali - colombia",
     phone: "+57 3123364645",
     mail: "jcamilo.llanos@hotmail.com",
-    summary: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque et erat lobortis, efficitur ipsum vitae, convallis lacus. Nullam aliquam condimentum ante sed faucibus. Sed dignissim tempus sapien, efficitur rhoncus libero ultrices vel. Vestibulum porttitor efficitur libero, ac egestas massa fringilla sit amet. Integer suscipit felis eget rutrum volutpat. Donec elementum massa vitae sodales viverra. Aliquam in velit vel orci commodo suscipit at quis turpis. Mauris ac placerat enim, in iaculis nunc. Mauris nisl orci, imperdiet ut mauris ac, gravida tempus velit. Quisque porttitor nibh ac eros rhoncus, vitae egestas felis tempor. Nulla suscipit laoreet egestas. Vivamus sit amet luctus dolor. Donec egestas dui id tortor tempor dapibus. ",
+    summary:
+      "Desarrollador web junior con 2 años de experiencia en el desarrollo de aplicaciones de interfaz de usuario y aplicaciones web profesionales usando HTML5, CSS, CSS3, JavaScript (Es5 y ES6), jQuery y Bootstrap Diseñado y mantenido sitios web usando HTML5, CSS3, jQuery, Bootstrap, y JavaScript Problemas identificados y corregidos descubiertos durante las pruebas o los comentarios de los clientes bajo la guía de un desarrollador senior.",
   },
   social: [
     {
@@ -95,7 +96,7 @@ export default {
       tag: "react native ",
       img: "https://wallpapercave.com/wp/wp3284841.gif",
       title: "hola",
-      caption:"hola caption ",
+      caption: "hola caption ",
       description: "app reacasdasdadasdasdasdasdasdasdasdasd ",
       links: [{ link: "google.com", icon: <Facebook /> }],
     },
@@ -103,7 +104,7 @@ export default {
       tag: "react js  ",
       img: "https://wallpapercave.com/wp/wp3284841.gif",
       title: "hola",
-      caption:"hola caption ",
+      caption: "hola caption ",
       description: "app react asdasdasdasdasdasdasdasdasdasdasda ",
       links: [{ link: "google.com", icon: <Facebook /> }],
     },

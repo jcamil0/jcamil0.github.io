@@ -1,15 +1,49 @@
-.navbar > a > .icon {
- font-size: 30px;
-  vertical-align: auto;
-}
-
-.header_right > a > .MuiSvgIcon-root {
-  font-size: 40px;
-  margin-right: 12px;
-  color: var(--main-color);
-  /* align-items: center; */
-}
-.navbar .navbar-collapse {
+header {
+  position: relative;
+  height: 100vh;
+  min-height: 500px;
+  width: 100%;
   text-align: center;
-
+  overflow: hidden;
 }
+
+/* vertically center banner section */
+header:before {
+  content: '';
+  display: inline-block;
+  vertical-align: middle;
+  height: 100%;
+}
+header .banner {
+  display: inline-block;
+  vertical-align: middle;
+  margin: 0 auto;
+  width: 85%;
+  padding-bottom: 30px;
+  text-align: center;
+}
+
+header .banner-text { width: 100%; }
+header .banner-text h1 {
+  font: 90px/1.1em 'opensans-bold', sans-serif;
+  color: #fff;
+  letter-spacing: -2px;
+  margin: 0 auto 18px auto;
+}
+header .banner-text h3 {
+  font: 18px/1.9em 'librebaskerville-regular', serif;
+  color: #ddd;
+  margin: 0 auto;
+  width: 70%;
+}
+header .banner-text h3 span,
+header .banner-text h3 a {
+  color: #fff;
+}
+header .banner-text hr {
+  width: 60%;
+  margin: 18px auto 24px auto;
+  border-color: #2F2D2E;
+  border-color: rgba(150, 150, 150, .1);
+}
+

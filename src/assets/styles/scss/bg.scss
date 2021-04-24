@@ -4,6 +4,9 @@
 $bg-url: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAIAAACRXR/mAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAIGNIUk0AAHolAACAgwAA+f8AAIDpAAB1MAAA6mAAADqYAAAXb5JfxUYAAABnSURBVHja7M5RDYAwDEXRDgmvEocnlrQS2SwUFST9uEfBGWs9c97nbGtDcquqiKhOImLs/UpuzVzWEi1atGjRokWLFi1atGjRokWLFi1atGjRokWLFi1af7Ukz8xWp8z8AAAA//8DAJ4LoEAAlL1nAAAAAElFTkSuQmCC";
 $bg-width: 50px;
 $bg-height: 50px;
+html{
+  background-color: white;
+}
 
 /* Animations */
 @-webkit-keyframes bg-scrolling-reverse {
@@ -37,17 +40,17 @@ body {
   margin-top: 40px;
   color: #999;
   font: 400 16px/1.5 exo, ubuntu, "segoe ui", helvetica, arial, sans-serif;
-  /* img size is 50x50 */
-  // background: url('../../img/gridme.png') ;
-  -webkit-animation: bg-scrolling-reverse 4s infinite; /* Safari 4+ */
-  -moz-animation:    bg-scrolling-reverse 4s infinite; /* Fx 5+ */
-  -o-animation:      bg-scrolling-reverse 4s infinite; /* Opera  */
-  animation:         bg-scrolling-reverse 4s infinite; /* IE 10+ */
+  // img size is 50x50 
+  // background: url('../../img/oriental-tiles.png') ;
+  -webkit-animation: bg-scrolling-reverse 1s infinite; /* Safari 4+ */
+  -moz-animation:    bg-scrolling-reverse 1s infinite; /* Fx 5+ */
+  -o-animation:      bg-scrolling-reverse 1s infinite; /* Opera  */
+  animation:         bg-scrolling-reverse 1s infinite; /* IE 10+ */
   -webkit-animation-timing-function: linear;
   -moz-animation-timing-function:    linear;
   -o-animation-timing-function:      linear;
   animation-timing-function:         linear;
-  
+
 }
 
 

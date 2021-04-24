@@ -26,58 +26,58 @@ const Resume = () => {
       </Grow>
 
       <Grow in timeout={980}>
-      {/* resume title */}
-      <Grid container className="section pd_45">
-        <Grid item className="section_title  mb_30">
-          <span></span>
-          <h6 className="section_text">resume</h6>
-        </Grid>
-        {/* resume container */}
-        <Grid item xs={12}>
-          <Grid container>
-            <Grid item sm={12} md={6}>
-              <CustomTimeline title="exeriences" icon={<Work />}>
-                {Personaldata.experiences.map((experience) => (
-                  <TimelineItem>
-                    <CustomTimelineSeparator />
-                    <TimelineContent>
-                      <Typography>{experience.title}</Typography>
-                      <Typography variant="caption">
-                        {experience.period}
-                      </Typography>
-                      <Typography variant="body2">
-                        {experience.company}
-                      </Typography>
-                    </TimelineContent>
-                  </TimelineItem>
-                ))}
-              </CustomTimeline>
-            </Grid>
+        {/* resume title */}
+        <Grid container className="section pd_45">
+          <Grid item className="section_title  mb_30">
+            <span></span>
+            <h6 className="section_text">resume</h6>
+          </Grid>
+          {/* resume container */}
+          <Grid item xs={12}>
+            <Grid container>
+              <Grid item sm={12} md={6}>
+                <CustomTimeline title="exeriences" icon={<Work />}>
+                  {Personaldata.experiences.map((experience) => (
+                    <TimelineItem>
+                      <CustomTimelineSeparator />
+                      <TimelineContent>
+                        <Typography>{experience.title}</Typography>
+                        <Typography variant="caption">
+                          {experience.period}
+                        </Typography>
+                        <Typography variant="body2">
+                          {experience.company}
+                        </Typography>
+                      </TimelineContent>
+                    </TimelineItem>
+                  ))}
+                </CustomTimeline>
+              </Grid>
 
-            {/* education  */}
+              {/* education  */}
 
-            <Grid item sm={12} md={6}>
-              <CustomTimeline title="educacion mb_30" icon={<Work />}>
-                {Personaldata.educations.map((education) => (
-                  <TimelineItem>
-                    <CustomTimelineSeparator />
-                    <TimelineContent>
-                      <Typography>{education.title}</Typography>
-                      <Typography variant="caption">
-                        {education.city}
-                      </Typography>
-                      <Typography variant="body2">
-                        {education.degree}
-                      </Typography>
-                    </TimelineContent>
-                  </TimelineItem>
-                ))}
-              </CustomTimeline>
+              <Grid item sm={12} md={6}>
+                <CustomTimeline title="educacion mb_30" icon={<Work />}>
+                  {Personaldata.educations.map((education) => (
+                    <TimelineItem>
+                      <CustomTimelineSeparator />
+                      <TimelineContent>
+                        <Typography>{education.title}</Typography>
+                        <Typography variant="caption">
+                          {education.city}
+                        </Typography>
+                        <Typography variant="body2">
+                          {education.degree}
+                        </Typography>
+                      </TimelineContent>
+                    </TimelineItem>
+                  ))}
+                </CustomTimeline>
+              </Grid>
             </Grid>
           </Grid>
         </Grid>
-      </Grid>
-</Grow>
+      </Grow>
       {/* services  */}
       <Grid container className="section pd_45">
         <Grid item className="section_title mb_30">
