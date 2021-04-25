@@ -1,11 +1,8 @@
 import React, { useState } from "react";
-import { Grid, Typography, TextField, Grow } from "@material-ui/core";
-import Send from "@material-ui/icons/Email";
-import { Form } from "react-bootstrap";
 import emailjs from "emailjs-com";
-
-import CustomButton from "../components/Button";
 import Personaldata from "../utils/resumeData";
+import { Form } from "react-bootstrap";
+import "../assets/styles/contact.css";
 
 const Contact = () => {
   const [data, setdata] = useState({
@@ -49,115 +46,132 @@ const Contact = () => {
   }
 
   return (
-    <>
-      <Grow in timeout={1000}>
-        {/* contac */}
-        <Grid container className="section pt_45 pd_45 ">
-          {/* contact form */}
-          <Grid container spacing={3}>
-            <Grid item xs={12} lg={7}>
-              <Grid container>
-                <Grid item className="section_title mb_30">
-                  <span></span>
-                  <h6 className="section_text">contact form </h6>
-                </Grid>
+    <section id="contact">
+      <div className="row section-head">
+        <div className="two columns header-col">
+          <h1>
+            <span>Get In Touch.</span>
+          </h1>
+        </div>
 
-                <Form onSubmit={sendEmail}>
-                  <Grid item xs={12}>
-                    <Grid container spacing={3}>
-                      <Grid item xs={12} sm={6}>
-                        <TextField
-                          fullWidth
-                          name="to_name"
-                          label="name"
-                          onChange={handleChange}
-                        />
-                      </Grid>
+        <div className="ten columns">
+          <p className="lead">message</p>
+        </div>
+      </div>
 
-                      <Grid item xs={12} sm={6}>
-                        <TextField
-                          fullWidth
-                          name="from_name"
-                          label="email"
-                          type="email"
-                          onChange={handleChange}
-                        />
-                      </Grid>
-                      <Grid item xs={12}>
-                        <TextField
-                          fullWidth
-                          name="message"
-                          label="message"
-                          onChange={handleChange}
-                          multiline
-                          rows={4}
-                        />
-                      </Grid>
+      <div className="row">
+        <div className="eight columns">
+          <Form onSubmit={sendEmail}>
+            <div>
+              <label htmlFor="contactName">
+                Name <span className="required">*</span>
+              </label>
+              <input
+                type="text"
+                defaultValue=""
+                size="35"
+                id="contactName"
+                name="to_name"
+                onChange={handleChange}
+              />
+            </div>
 
-                      <Grid item xs={12}>
-                        {/* button here  */}
-                        <CustomButton text="send it" icon={<Send />} />
-                      </Grid>
-                    </Grid>
-                  </Grid>
-                </Form>
-              </Grid>
-            </Grid>
+            <div>
+              <label htmlFor="contactEmail">
+                Email <span className="required">*</span>
+              </label>
+              <input
+                type="text"
+                defaultValue=""
+                size="35"
+                id="contactEmail"
+                name="from_name"
+                onChange={handleChange}
+              />
+            </div>
 
-            <Grid item xs={12} lg={5}>
-              <Grid container>
-                <Grid item className="section_title mb_30">
-                  <span></span>
-                  <h6 className="section_text">contact Informaion</h6>
-                </Grid>
+            <div>
+              <label htmlFor="contactSubject">Subject</label>
+              <input
+                type="text"
+                defaultValue=""
+                size="35"
+                id="contactSubject"
+                name="contactSubject"
+                onChange={handleChange}
+              />
+            </div>
 
-                <Grid item xs={12}>
-                  <Grid container spacing={2}>
-                    <Grid item xs={12}>
-                      <Typography>
-                        <span>
-                          {Personaldata.profile.firstname}{" "}
-                          {Personaldata.profile.lastname}
-                        </span>
-                      </Typography>
-                    </Grid>
+            <div>
+              <label htmlFor="contactMessage">
+                Message <span className="required">*</span>
+              </label>
+              <textarea
+                cols="50"
+                rows="15"
+                id="contactMessage"
+                name="message"
+                onChange={handleChange}
+              ></textarea>
+            </div>
 
-                    <Grid item xs={12}>
-                      <Typography>
-                        <span>{Personaldata.profile.title}</span>
-                      </Typography>
-                    </Grid>
+            <div>
+              <button className="submit">Submit</button>
+              <span id="image-loader">
+                <img alt="" src="images/loader.gif" />
+              </span>
+            </div>
+          </Form>
+          <div id="message-warning"> Error boy</div>
+          <div id="message-success">
+            <i className="fa fa-check"></i>Your message was sent, thank you!
+            <br />
+          </div>
+        </div>
 
-                    <Grid item xs={12}>
-                      <Typography>
-                        <span>{Personaldata.profile.city}</span>
-                      </Typography>
-                    </Grid>
+        <aside className="four columns footer-widgets">
+          <div className="widget widget_contact">
+            <h4>Address and Phone</h4>
+            <p className="address">
+              name
+              <br />
+              street <br />
+              city, state zip
+              <br />
+              <span>phone</span>
+            </p>
+          </div>
 
-                    <Grid item xs={12}>
-                      <Typography>
-                        <span>{Personaldata.profile.phone}</span>
-                      </Typography>
-                    </Grid>
-                  </Grid>
-                </Grid>
-                <Grid item xs={12}>
-                  <Grid container>
-                    {Object.keys(Personaldata.social).map((key) => (
-                      <Grid item>
-                        <a href={Personaldata.social[key].link}>
-                          {Personaldata.social[key].icon}
-                        </a>
-                      </Grid>
-                    ))}
-                  </Grid>
-                </Grid>
-              </Grid>
-            </Grid>
-          </Grid>
-        </Grid>
-      </Grow>
-    </>
+          <div className="widget widget_tweets">
+            <h4 className="widget-title">Latest Tweets</h4>
+            <ul id="twitter">
+              <li>
+                <span>
+                  This is Photoshop's version of Lorem Ipsum. Proin gravida nibh
+                  vel velit auctor aliquet. Aenean sollicitudin, lorem quis
+                  bibendum auctor, nisi elit consequat ipsum
+                  <a href="./">http://t.co/CGIrdxIlI3</a>
+                </span>
+                <b>
+                  <a href="./">2 Days Ago</a>
+                </b>
+              </li>
+              <li>
+                <span>
+                  Sed ut perspiciatis unde omnis iste natus error sit voluptatem
+                  accusantium doloremque laudantium, totam rem aperiam, eaque
+                  ipsa quae ab illo inventore veritatis et quasi
+                  <a href="./">http://t.co/CGIrdxIlI3</a>
+                </span>
+                <b>
+                  <a href="./">3 Days Ago</a>
+                </b>
+              </li>
+            </ul>
+          </div>
+        </aside>
+      </div>
+    </section>
   );
 };
 

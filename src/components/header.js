@@ -1,14 +1,18 @@
 import React from "react";
-import "../assets/styles/header.css";
 import Personaldata from "../utils/resumeData";
+import Typewriter from "typewriter-effect";
+import Navbar from '../components/Navbar'
+import "../assets/styles/header.css";
 
 function header() {
   return (
-    <header>
-      <div className="row banner">
+    <header  id="home">
+      <Navbar />
+      <div className="banner">
         <div className="banner-text">
           <h1 className="responsive-headline">
-            {Personaldata.profile.firstname} 
+            {Personaldata.profile.firstname}
+            {" "}
             {Personaldata.profile.lastname}
           </h1>
           <h3>{Personaldata.profile.summary} </h3>
@@ -25,10 +29,10 @@ function header() {
       </div>
 
       <p className="scrolldown">
-        <a className="smoothscroll" href="#about">
-          <i className="icon-down-circle"></i>
-        </a>
-      </p>
+          <a className="smoothscroll" href="#about">
+            <i className="icon-down-circle"></i>
+          </a>
+        </p>
     </header>
   );
 }

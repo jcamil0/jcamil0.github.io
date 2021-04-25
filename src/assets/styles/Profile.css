@@ -1,59 +1,46 @@
-.profile {
-  background-color: white;
-  border-radius: 6px;
-  width: 100%;
-  display: inline-block;
-}
 
-.profile_name {
-  line-height: 18px;
-  padding: 19px;
-  text-align: center
-}
-
-.profile_name .name {
-  text-transform: uppercase;
-  font-size: 22px;
-  font-weight: bold;
-}
-
-.profile_name .title {
-  font-size: 20px;
-  color: #777;
-  font-weight: bold;
-}
-
-.profile_image {
-  margin-top: -10px;
-  clip-path: polygon(0 9%, 100% 0, 100% 94%, 0% 100%);
-}
-.profile_image img {
-  width: 100%;
-}
-.profile_information {
-  top: 0;
-  left: 0;
-  margin: -44px 10px 30px;
-}
-
-.timelineIten_text {
-  font-size: 15px !important;
-  color: gray;
-  font-weight: bold;
-
-}
-.timelineIten_text > a {
-  text-decoration: none;
-}
-
-.timelineIten_text > span {
-  color: black;
-}
-
-.profile .button_container {
-  width: 100%;
-  display: flex !important;
-  justify-content: center ;
-  margin-top: 20px;
-}
-
+#about {
+    background: #000524;
+    padding-top: 96px;
+    padding-bottom: 66px;
+    overflow: hidden;
+ }
+ 
+ #about a, #about a:visited  { color: #fff; }
+ #about a:hover, #about a:focus { color: #0762f9; }
+ 
+ #about h2 {
+    font: 22px/30px 'opensans-bold', sans-serif;
+    color: #fff;
+    margin-bottom: 12px;
+ }
+ #about p {
+    line-height: 30px;
+    color: #ccc;
+ }
+ #about .profile-pic {
+    position: relative;
+    width: 120px;
+    height: 120px;
+    border-radius: 100%;
+ }
+ #about .contact-details { width: 41.66667%; }
+ #about .download {
+    width: 58.33333%;
+    padding-top: 6px;
+ }
+ #about .main-col { padding-right: 5%; }
+ #about .download .button {
+    margin-top: 6px;
+    background: #444;
+ }
+ #about .download .button:hover {
+    background: #fff;
+    color: #2B2B2B;
+ }
+ #about .download .button i {
+    margin-right: 15px;
+    font-size: 20px;
+ }
+ 
+ 
