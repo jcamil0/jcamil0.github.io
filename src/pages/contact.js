@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import emailjs from "emailjs-com";
 import Personaldata from "../utils/resumeData";
 import { Form } from "react-bootstrap";
-import "../assets/styles/contact.css";
 
 const Contact = () => {
   const [data, setdata] = useState({
