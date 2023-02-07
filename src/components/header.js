@@ -1,6 +1,5 @@
 import React from "react";
 import Personaldata from "../utils/resumeData";
-import Typewriter from "typewriter-effect";
 import Navbar from '../components/Navbar'
 import "../assets/styles/header.css";
 

@@ -13,9 +13,11 @@ import {
   CardContent,
   Typography,
   Grow,
-} from "@material-ui/core";
+} from "@mui/material";
 import Personaldata from "../utils/resumeData";
 import "../assets/styles/portfolio.css";
+
+
 const Portfolio = () => {
   const [Tabvalue, setTabvalue] = useState("All");
   const [proyectDialog, setProyectDialog] = useState(false);
@@ -120,15 +122,7 @@ const Portfolio = () => {
               </Typography>
             </DialogContent>
             <DialogActions className="proyectDialog_actions">
-              {proyectDialog?.links?.map((link) => (
-                <a
-                  href={link.link}
-                  target="_blank"
-                  className="proyectDialog_icon"
-                >
-                  {link.icon}
-                </a>
-              ))}
+     
             </DialogActions>
           </Dialog>
         </div>

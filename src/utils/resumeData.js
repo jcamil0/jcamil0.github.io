@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Facebook, GitHub, WebAsset, LinkedIn } from "@material-ui/icons";
+import { Facebook, GitHub, WebAsset, LinkedIn } from "@mui/icons-material";
 
 export default {
   profile: {

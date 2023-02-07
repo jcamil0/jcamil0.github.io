@@ -1,7 +1,4 @@
 import React from "react";
-import { Grid, Typography, Icon, Paper, Grow } from "@material-ui/core";
-import { TimelineItem, TimelineContent, TimelineDot } from "@material-ui/lab";
-import { Work } from "@material-ui/icons";
 
 import "../assets/styles/resume.css";
 import Personaldata from "../utils/resumeData";
