@@ -122,7 +122,15 @@ const Portfolio = () => {
               </Typography>
             </DialogContent>
             <DialogActions className="proyectDialog_actions">
-     
+              {proyectDialog.links.map((link) => (
+                <a
+                  href={link.link}
+                  target="_blank"
+                  className="proyectDialog_icon"
+                >
+                  {link.icon}
+                </a>
+              ))}
             </DialogActions>
           </Dialog>
         </div>
