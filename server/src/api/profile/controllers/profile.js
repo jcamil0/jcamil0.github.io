@@ -1,9 +1,9 @@
 'use strict';
 
 /**
- * cv controller
+ * profile controller
  */
 
 const { createCoreController } = require('@strapi/strapi').factories;
 
-module.exports = createCoreController('api::cv.cv');
+module.exports = createCoreController('api::profile.profile');
