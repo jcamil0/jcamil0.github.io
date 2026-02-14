@@ -1,0 +1,1073 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="theme-color" content="#f3f0e6" />
+  <title>San Valentín 💌</title>
+
+  <!-- Fonts (online). Si quieres 100% offline, bórralas y usa las fuentes fallback. -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Patrick+Hand&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg-paper: #f3f0e6;
+      --ink: #1d1d1f;
+      --muted: rgba(29,29,31,.75);
+      --shadow: 0 22px 60px rgba(0,0,0,.30);
+      --frame: rgba(174, 105, 232, .60);
+      --btn: #c8a7ff;
+      --btnHover: #b98cff;
+      --yes: #52c66a;
+      --no: #e75a5a;
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      color:var(--ink);
+      background:#0e0c10;
+      overflow-x:hidden;
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    }
+    body.modalOpen{ overflow: hidden; }
+
+    /* ---------- Background collage ---------- */
+    .bg{
+      position:fixed;
+      inset:0;
+      z-index:-2;
+      padding:18px;
+      display:grid;
+      gap:14px;
+      grid-auto-flow:dense;
+      grid-auto-rows: 160px;
+      grid-template-columns: repeat(7, 1fr);
+      transform: translateZ(0);
+    }
+    @media (max-width: 1100px){
+      .bg{grid-template-columns: repeat(5, 1fr); grid-auto-rows: 150px;}
+    }
+    @media (max-width: 780px){
+      .bg{grid-template-columns: repeat(3, 1fr); grid-auto-rows: 130px; padding:12px; gap:10px;}
+    }
+
+    .tile{
+      position:relative;
+      border-radius: 10px;
+      overflow:hidden;
+      border: 6px solid var(--frame);
+      outline: 1px solid rgba(255,255,255,.06);
+      background:#0f0f12;
+      box-shadow: 0 10px 24px rgba(0,0,0,.25);
+      grid-column: span var(--cspan, 1);
+      grid-row: span var(--rspan, 1);
+      transform: translateZ(0);
+    }
+    .tile::after{
+      content:"";
+      position:absolute; inset:0;
+      background: radial-gradient(1200px 420px at 50% 20%, rgba(255,255,255,.10), transparent 62%),
+                  linear-gradient(to bottom, rgba(0,0,0,.10), rgba(0,0,0,.12));
+      pointer-events:none;
+    }
+    .tile img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      filter: saturate(1.12) contrast(1.03) brightness(1.06);
+      transform: scale(1.02);
+    }
+
+    /* Lighter veil so collage shows more */
+    .veil{
+      position:fixed;
+      inset:0;
+      z-index:-1;
+      background:
+        radial-gradient(900px 420px at 50% 18%, rgba(0,0,0,.01), rgba(0,0,0,.16) 70%),
+        linear-gradient(to bottom, rgba(0,0,0,.06), rgba(0,0,0,.18));
+      backdrop-filter: blur(.55px);
+    }
+
+    /* ---------- App layout ---------- */
+    .app{
+      min-height:100vh;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding: 44px 16px;
+    }
+
+    .stage{
+      width: min(860px, 95vw);
+      position:relative;
+    }
+
+    .card{
+      position:relative;
+      background: rgba(243,240,230,.78);
+      backdrop-filter: blur(6px);
+      border-radius: 12px;
+      box-shadow: var(--shadow);
+      padding: 26px 26px 22px;
+      overflow:hidden;
+    }
+    @media (max-width: 480px){
+      .card{padding: 20px 18px 18px;}
+      .stage{width: min(92vw, 860px);}
+    }
+
+    .top-heart{
+      width: 30px;
+      height: 30px;
+      margin: -2px auto 12px;
+      filter: drop-shadow(0 4px 10px rgba(0,0,0,.20));
+    }
+
+    .hand{
+      font-family: "Patrick Hand", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      letter-spacing: .1px;
+    }
+
+    .bodyText{
+      font-size: 20px;
+      line-height: 1.45;
+      margin: 0;
+      color: var(--ink);
+      white-space: pre-wrap;
+      overflow-wrap: anywhere;
+      word-break: break-word;
+      max-width: 100%;
+    }
+    .sig{
+      margin-top: 12px;
+      font-size: 20px;
+      color: var(--ink);
+    }
+
+    .ctaRow{
+      display:flex;
+      justify-content:center;
+      gap: 12px;
+      flex-wrap:wrap;
+      margin-top: 18px;
+    }
+
+    .btn{
+      appearance:none;
+      border:none;
+      border-radius: 0px;
+      padding: 12px 18px;
+      font-weight: 700;
+      letter-spacing: .5px;
+      cursor:pointer;
+      transition: transform .12s ease, filter .12s ease, background .12s ease;
+      box-shadow: 0 10px 22px rgba(0,0,0,.22);
+      text-transform: uppercase;
+      font-size: 13px;
+      user-select:none;
+    }
+    .btn:active{transform: translateY(1px) scale(.99)}
+    .btnPrimary{background: var(--btn); color: #2b1e39;}
+    .btnPrimary:hover{background: var(--btnHover);}
+
+    .btnGhost{
+      background: rgba(255,255,255,.0);
+      border: 2px dashed rgba(40,40,40,.35);
+      color: rgba(40,40,40,.75);
+      box-shadow:none;
+      text-transform:none;
+      font-weight:600;
+      letter-spacing:0;
+    }
+
+    /* ---------- Envelope (smaller) ---------- */
+    .envelopeWrap{
+      margin: 14px auto 2px;
+      width: min(460px, 100%);
+    }
+
+    .envelope{
+      position:relative;
+      width: 100%;
+      height: 280px;
+      margin: 0 auto;
+      perspective: 1200px;
+      border-radius: 12px;
+      outline: none;
+    }
+    @media (max-width: 480px){
+      .envelope{height: 290px;}
+      .envelopeWrap{width: min(420px, 100%);}
+    }
+
+    .envBase{
+      position:absolute;
+      inset: 22px 34px;
+      border-radius: 12px;
+      background: #efe6d6;
+      box-shadow: 0 18px 36px rgba(0,0,0,.18);
+      overflow:hidden;
+    }
+
+    .envBack{
+      position:absolute;
+      inset:0;
+      background: linear-gradient(135deg, #f7eedf, #eadcc6);
+    }
+    .envFront{
+      position:absolute;
+      inset:0;
+      background:
+        linear-gradient(135deg, transparent 49%, rgba(0,0,0,.08) 50%, transparent 52%),
+        linear-gradient(-135deg, transparent 49%, rgba(0,0,0,.08) 50%, transparent 52%),
+        linear-gradient(to bottom, rgba(255,255,255,.0), rgba(0,0,0,.06));
+      clip-path: polygon(0 0, 50% 58%, 100% 0, 100% 100%, 0 100%);
+      opacity:.55;
+      pointer-events:none;
+    }
+    .envPocket{
+      position:absolute;
+      inset:0;
+      clip-path: polygon(0 0, 50% 58%, 100% 0, 100% 100%, 0 100%);
+      background: linear-gradient(135deg, #f2e7d5, #e5d5bd);
+      border-top: 1px solid rgba(0,0,0,.08);
+    }
+
+    .envFlap{
+      position:absolute;
+      left:0; right:0; top:0;
+      height: 66%;
+      transform-origin: top center;
+      transform: rotateX(0deg);
+      transition: transform .8s cubic-bezier(.2,.9,.2,1);
+      background: linear-gradient(135deg, #f6ebda, #e7d7bf);
+      clip-path: polygon(0 0, 100% 0, 50% 78%);
+      border-bottom: 1px solid rgba(0,0,0,.10);
+      box-shadow: 0 10px 24px rgba(0,0,0,.10);
+    }
+
+    /* Heart seal (only this opens the envelope) */
+    .seal{
+      position:absolute;
+      left:50%;
+      top: 62%;
+      transform: translate(-50%, -50%);
+      width: 44px;
+      height: 44px;
+      border-radius: 999px;
+      background: radial-gradient(circle at 30% 30%, #ff9aa8, #e63655);
+      box-shadow: 0 12px 20px rgba(0,0,0,.25);
+      display:grid;
+      place-items:center;
+      color:#fff;
+      font-size: 21px;
+      z-index: 5;
+      transition: transform .4s ease, opacity .3s ease;
+      user-select:none;
+      cursor:pointer;
+    }
+
+    /* small preview paper (no message) */
+    .paperPreview{
+      position:absolute;
+      left: 50%;
+      top: 54px;
+      transform: translateX(-50%);
+      width: calc(100% - 120px);
+      height: 160px;
+      background: #f8f4ec;
+      border-radius: 10px;
+      box-shadow: 0 14px 26px rgba(0,0,0,.16);
+      border: 1px solid rgba(0,0,0,.06);
+      z-index: 4;
+
+      translate: 0 140px;
+      opacity: 0;
+      filter: blur(.6px);
+      pointer-events:none;
+      transition: translate .75s cubic-bezier(.2,.9,.2,1), opacity .35s ease, filter .35s ease;
+    }
+    .paperPreview::before{
+      content:"";
+      position:absolute; inset:0;
+      background:
+        repeating-linear-gradient(
+          to bottom,
+          rgba(0,0,0,.00) 0px,
+          rgba(0,0,0,.00) 18px,
+          rgba(0,0,0,.032) 19px,
+          rgba(0,0,0,.00) 20px
+        );
+      opacity: .7;
+      border-radius: 10px;
+    }
+
+    .hint{
+      margin: 10px 0 0;
+      text-align:center;
+      color: rgba(10,10,10,.55);
+      font-size: 14px;
+    }
+
+    .envelope.open .envFlap{ transform: rotateX(175deg); }
+    .envelope.open .paperPreview{
+      translate: 0 18px;
+      opacity: .92;
+      filter: blur(0);
+    }
+    .envelope.open .seal{
+      transform: translate(-50%, -50%) scale(.85);
+      opacity:.45;
+    }
+
+    /* ---------- Fullscreen letter modal ---------- */
+    .modal{
+      position:fixed;
+      inset:0;
+      z-index: 10;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding: 18px 16px;
+      background: rgba(0,0,0,.18);
+      backdrop-filter: blur(2px);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity .22s ease;
+    }
+    .modal.show{
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .paper{
+      position:relative;
+      width: calc(100vw - 32px);
+      height: calc(100vh - 36px);
+      max-width: 980px;
+      max-height: 940px;
+      background: #f8f4ec;
+      border-radius: 18px;
+      box-shadow: 0 26px 70px rgba(0,0,0,.32);
+      padding: 24px 22px 18px;
+      overflow:auto;
+      overflow-x: hidden;
+      border: 1px solid rgba(0,0,0,.08);
+      transform: translateY(12px) scale(.985);
+      opacity: 0;
+      transition: transform .30s ease, opacity .30s ease;
+    }
+    .modal.show .paper{
+      transform: translateY(0) scale(1);
+      opacity: 1;
+    }
+    @media (max-width: 480px){
+      .paper{ padding: 20px 18px 16px; border-radius: 16px; }
+    }
+
+    /* --- Paper decoration (more "wow") --- */
+    .paper::before{
+      content:"";
+      position:absolute; inset:0;
+      background:
+        radial-gradient(140px 90px at 18% 22%, rgba(230,57,87,.10), transparent 60%),
+        radial-gradient(130px 90px at 82% 18%, rgba(174,105,232,.10), transparent 62%),
+        radial-gradient(150px 100px at 76% 74%, rgba(230,57,87,.08), transparent 62%),
+        repeating-linear-gradient(
+          to bottom,
+          rgba(0,0,0,.00) 0px,
+          rgba(0,0,0,.00) 18px,
+          rgba(0,0,0,.035) 19px,
+          rgba(0,0,0,.00) 20px
+        );
+      opacity: .95;
+      pointer-events:none;
+      z-index: 0;
+      border-radius: 18px;
+    }
+    .paper::after{
+      content:"";
+      position:absolute; inset:0;
+      background:
+        linear-gradient(135deg, rgba(255,255,255,.55), rgba(255,255,255,.0)) top left/140px 80px no-repeat,
+        linear-gradient(-135deg, rgba(255,255,255,.55), rgba(255,255,255,.0)) top right/140px 80px no-repeat,
+        radial-gradient(420px 200px at 50% 12%, rgba(255,255,255,.40), transparent 65%),
+        radial-gradient(520px 240px at 50% 115%, rgba(0,0,0,.09), transparent 60%);
+      mix-blend-mode: multiply;
+      opacity: .35;
+      pointer-events:none;
+      z-index: 0;
+      border-radius: 18px;
+    }
+
+    .paperDecor{
+      position:absolute;
+      inset:0;
+      pointer-events:none;
+      z-index: 1;
+    }
+    .paperDecor .sticker{
+      position:absolute;
+      right: 16px;
+      top: 14px;
+      background: rgba(230,57,87,.12);
+      border: 1px solid rgba(230,57,87,.22);
+      border-radius: 999px;
+      padding: 7px 11px;
+      font-size: 14px;
+      color: rgba(29,29,31,.85);
+      transform: rotate(6deg);
+      box-shadow: 0 10px 18px rgba(0,0,0,.10);
+    }
+    .paperDecor .miniHearts{
+      position:absolute;
+      left: 16px;
+      top: 16px;
+      font-size: 14px;
+      color: rgba(174,105,232,.75);
+      transform: rotate(-6deg);
+      letter-spacing: 4px;
+      opacity: .9;
+    }
+    .paperDecor .borderHearts{
+      position:absolute;
+      inset: 34px;
+      border: 2px dashed rgba(174,105,232,.28);
+      border-radius: 18px;
+      box-shadow: inset 0 0 0 1px rgba(230,57,87,.06);
+    }
+
+    .paperContent{
+      position:relative;
+      z-index: 2;
+      padding: 96px 76px 60px;
+    }
+    @media (max-width: 480px){
+      .paperContent{ padding: 78px 22px 30px; }
+    }
+
+    .paperTitle{
+      margin: 4px 0 10px;
+      font-size: 34px;
+      font-weight: 400;
+      text-align:center;
+    }
+    @media (max-width: 480px){
+      .paperTitle{ font-size: 30px; }
+    }
+
+    .editable{
+      outline:none;
+      border-radius: 6px;
+      padding: 2px 4px;
+    }
+    .editable:focus{
+      outline: 2px dashed rgba(174, 105, 232, .55);
+      background: rgba(174,105,232,.08);
+    }
+
+    .paper::-webkit-scrollbar{width:10px}
+    .paper::-webkit-scrollbar-thumb{background: rgba(0,0,0,.10); border-radius: 999px}
+    .paper::-webkit-scrollbar-track{background: transparent}
+
+
+    /* Keep ALL pasted content inside the inner frame */
+    .paperContent, .paperContent *{
+      max-width: 100%;
+      box-sizing: border-box;
+      overflow-wrap: anywhere;
+      word-break: break-word;
+    }
+    .paperContent{
+      overflow-x: hidden;
+    }
+    .editable{
+      display:block;
+      max-width: 100%;
+    }
+    /* When you paste multi-paragraph text into contenteditable,
+       browsers may create <div> or <p> blocks. We style them nicely. */
+    .editable div, .editable p{
+      margin: 0 0 14px;
+    }
+    .editable div:last-child, .editable p:last-child{
+      margin-bottom: 0;
+    }
+
+
+    /* Close button */
+    .closeBtn{
+      position: sticky;
+      top: 10px;
+      margin-left:auto;
+      display:inline-flex;
+      align-items:center;
+      gap: 8px;
+      border:none;
+      background: rgba(0,0,0,.06);
+      color: rgba(0,0,0,.75);
+      padding: 10px 12px;
+      border-radius: 999px;
+      cursor:pointer;
+      font-weight: 700;
+      box-shadow: 0 10px 18px rgba(0,0,0,.10);
+      z-index: 4;
+      float: right;
+    }
+    .closeBtn:hover{ background: rgba(0,0,0,.09); }
+
+    /* Burst hearts when opening */
+    .paperBurstHeart{
+      position:absolute;
+      z-index: 3;
+      pointer-events:none;
+      filter: drop-shadow(0 8px 10px rgba(0,0,0,.12));
+      animation: floatPop 1.15s ease-out forwards;
+      opacity: 0;
+    }
+    @keyframes floatPop{
+      0%{ transform: translateY(14px) scale(.85) rotate(0deg); opacity: 0; }
+      15%{ opacity: 1; }
+      100%{ transform: translateY(-64px) scale(1.15) rotate(18deg); opacity: 0; }
+    }
+
+    /* ---------- Screen transitions ---------- */
+    .screen{
+      display:none;
+      animation: fadeIn .45s ease both;
+    }
+    .screen.active{display:block}
+    @keyframes fadeIn{
+      from{opacity:0; transform: translateY(8px)}
+      to{opacity:1; transform: translateY(0)}
+    }
+
+    /* ---------- Question screen ---------- */
+    .questionWrap{
+      text-align:center;
+      padding: 4px 0 0;
+    }
+    .qTitle{
+      margin: 14px 0 8px;
+      font-size: 30px;
+      font-weight: 400;
+    }
+    .qSub{
+      margin: 0 0 12px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .bunny{
+      width: 220px;
+      max-width: 70%;
+      margin: 6px auto 0;
+      display:block;
+      filter: drop-shadow(0 16px 24px rgba(0,0,0,.18));
+      user-select:none;
+      pointer-events:none;
+    }
+
+    .choiceRow{
+      position:relative;
+      height: 70px;
+      margin-top: 12px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap: 18px;
+    }
+
+    .btnYes{background: var(--yes); color:#0e2a16;}
+    .btnNo{
+      background: var(--no);
+      color:#2b0f0f;
+      position:relative;
+    }
+
+    .tinyLink{
+      margin-top: 12px;
+      background: none;
+      border:none;
+      color: rgba(30,30,30,.60);
+      cursor:pointer;
+      text-decoration: underline;
+      font-size: 13px;
+    }
+
+    /* ---------- Celebration ---------- */
+    .toast{
+      display:none;
+      margin: 14px auto 0;
+      max-width: 520px;
+      background: rgba(255,255,255,.65);
+      border: 1px solid rgba(0,0,0,.08);
+      border-radius: 12px;
+      padding: 12px 14px;
+      box-shadow: 0 16px 28px rgba(0,0,0,.18);
+    }
+    .toast.show{display:block; animation: pop .35s ease both;}
+    @keyframes pop{
+      from{opacity:0; transform: translateY(10px) scale(.98)}
+      to{opacity:1; transform: translateY(0) scale(1)}
+    }
+
+    .confetti{
+      position:fixed;
+      inset:0;
+      pointer-events:none;
+      z-index: 5;
+      overflow:hidden;
+      display:none;
+    }
+    .confetti.show{display:block;}
+    .heart{
+      position:absolute;
+      font-size: 18px;
+      opacity:.95;
+      animation: fall 1.9s linear forwards;
+      filter: drop-shadow(0 10px 12px rgba(0,0,0,.18));
+    }
+    @keyframes fall{
+      0%{transform: translateY(-10vh) rotate(0deg); opacity: 0}
+      10%{opacity: 1}
+      100%{transform: translateY(110vh) rotate(280deg); opacity: 0}
+    }
+
+    
+    /* Corner bouquets */
+    .paperDecor .corner {
+      position:absolute;
+      width: 160px;
+      height: 160px;
+      background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxODAiIGhlaWdodD0iMTgwIiB2aWV3Qm94PSIwIDAgMTgwIDE4MCI+CiAgPGRlZnM+CiAgICA8bGluZWFyR3JhZGllbnQgaWQ9ImciIHgxPSIwIiB5MT0iMCIgeDI9IjEiIHkyPSIxIj4KICAgICAgPHN0b3Agb2Zmc2V0PSIwIiBzdG9wLWNvbG9yPSIjZTYzOTU3IiBzdG9wLW9wYWNpdHk9IjAuOTUiLz4KICAgICAgPHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjYjk4Y2ZmIiBzdG9wLW9wYWNpdHk9IjAuOTUiLz4KICAgIDwvbGluZWFyR3JhZGllbnQ+CiAgPC9kZWZzPgogIDxwYXRoIGQ9Ik0yMiwxNTUgQzQyLDExOCA1OCw5NiA4Miw3NCBDMTA2LDUyIDEzNCw0MCAxNjAsMzIiCiAgICAgICAgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMmY4ZjViIiBzdHJva2Utd2lkdGg9IjYiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLW9wYWNpdHk9IjAuNTUiLz4KICA8cGF0aCBkPSJNMjIsMTU1IEM0NiwxMTQgNjQsOTAgODgsNzAgQzExMiw1MCAxMzUsNDAgMTYwLDMyIgogICAgICAgIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzJmOGY1YiIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1vcGFjaXR5PSIwLjM1Ii8+CiAgPGcgZmlsbD0iIzNiYmY3YSIgZmlsbC1vcGFjaXR5PSIwLjU1Ij4KICAgIDxwYXRoIGQ9Ik01MiAxMThjLTEwLTYtMTgtNC0yMiA2IDEwIDYgMTggNCAyMi02eiIvPgogICAgPHBhdGggZD0iTTc4IDkyYy0xMC02LTE4LTQtMjIgNiAxMCA2IDE4IDQgMjItNnoiLz4KICAgIDxwYXRoIGQ9Ik0xMDggNjRjLTEwLTYtMTgtNC0yMiA2IDEwIDYgMTggNCAyMi02eiIvPgogICAgPHBhdGggZD0iTTEzMiA1MGMtMTAtNi0xOC00LTIyIDYgMTAgNiAxOCA0IDIyLTZ6Ii8+CiAgPC9nPgogIDxnIGZpbGw9InVybCgjZykiPgogICAgPHBhdGggZD0iTTU0IDEzMmMwLTYgNy0xMSAxMy02IDYtNSAxMyAwIDEzIDYgMCAxMC0xMyAxOC0xMyAxOHMtMTMtOC0xMy0xOHoiIG9wYWNpdHk9IjAuOSIvPgogICAgPHBhdGggZD0iTTg4IDk2YzAtNSA2LTkgMTEtNSA1LTQgMTEgMCAxMSA1IDAgOS0xMSAxNi0xMSAxNnMtMTEtNy0xMS0xNnoiIG9wYWNpdHk9IjAuODUiLz4KICAgIDxwYXRoIGQ9Ik0xMTggNjhjMC01IDYtOSAxMS01IDUtNCAxMSAwIDExIDUgMCA5LTExIDE2LTExIDE2cy0xMS03LTExLTE2eiIgb3BhY2l0eT0iMC44Ii8+CiAgICA8cGF0aCBkPSJNMTQwIDQ4YzAtNCA1LTggMTAtNCA1LTQgMTAgMCAxMCA0IDAgOC0xMCAxNC0xMCAxNHMtMTAtNi0xMC0xNHoiIG9wYWNpdHk9IjAuNzUiLz4KICA8L2c+CiAgPGcgc3Ryb2tlPSIjZmZkNmRmIiBzdHJva2Utd2lkdGg9IjMiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgb3BhY2l0eT0iMC42NSI+CiAgICA8cGF0aCBkPSJNMzYgMTQ0bDAtMTBNMzEgMTM5bDEwIDAiLz4KICAgIDxwYXRoIGQ9Ik0xMDAgODJsMC0xME05NSA3N2wxMCAwIi8+CiAgICA8cGF0aCBkPSJNMTUwIDQwbDAtMTBNMTQ1IDM1bDEwIDAiLz4KICA8L2c+Cjwvc3ZnPg==");
+      background-size: contain;
+      background-repeat: no-repeat;
+      opacity: .9;
+      filter: drop-shadow(0 10px 16px rgba(0,0,0,.10));
+    }
+    .paperDecor .corner.tl { top: 6px; left: 6px; transform: rotate(-8deg); }
+    .paperDecor .corner.tr { top: 6px; right: 6px; transform: scaleX(-1) rotate(-8deg); }
+    .paperDecor .corner.bl { bottom: 6px; left: 6px; transform: scaleY(-1) rotate(-8deg); opacity: .78; }
+    .paperDecor .corner.br { bottom: 6px; right: 6px; transform: scale(-1) rotate(-8deg); opacity: .78; }
+    @media (max-width: 480px){
+      .paperDecor .corner{ width: 118px; height: 118px; }
+    }
+
+    /* Heart garland top/bottom */
+    .paperDecor .garland {
+      position:absolute;
+      left: 0; right: 0;
+      display:flex;
+      justify-content:center;
+      gap: 12px;
+      font-size: 14px;
+      opacity: .75;
+      letter-spacing: 2px;
+      color: rgba(230,57,87,.75);
+      text-shadow: 0 8px 14px rgba(0,0,0,.08);
+      pointer-events:none;
+      z-index: 2;
+    }
+    .paperDecor .garland.top { top: 54px; }
+    .paperDecor .garland.bottom { bottom: 54px; color: rgba(174,105,232,.70); }
+
+
+    
+    @media (max-width: 480px){
+      .paperDecor .borderHearts{ inset: 18px; }
+      .paperDecor .garland.top{ top: 42px; }
+      .paperDecor .garland.bottom{ bottom: 42px; }
+    }
+
+    /* Reduced motion */
+    @media (prefers-reduced-motion: reduce){
+      .screen{animation:none}
+      .envelope.open .envFlap{transition:none}
+      .paperBurstHeart{animation:none; display:none}
+      .heart{animation:none; display:none}
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Collage background gets built by JS -->
+  <div class="bg" id="collage" aria-hidden="true"></div>
+  <div class="veil" aria-hidden="true"></div>
+
+  <div class="app">
+    <div class="stage">
+
+      <!-- SCREEN 1: Letter -->
+      <section class="screen active" id="screen-letter">
+        <div class="card">
+          <!-- top heart -->
+          <svg class="top-heart" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M12 21s-7-4.35-9.6-8.9C.7 8.7 2.2 5.5 5.3 4.8c1.8-.4 3.5.3 4.7 1.6 1.2-1.3 2.9-2 4.7-1.6 3.1.7 4.6 3.9 2.9 7.3C19 16.65 12 21 12 21Z" fill="#e63957"/>
+          </svg>
+
+          <div class="envelopeWrap">
+            <div class="envelope hand" id="envelope" role="button" tabindex="0" aria-label="Abrir carta (presiona el corazón)">
+              <div class="envBase">
+                <div class="envBack"></div>
+
+                <div class="paperPreview" aria-hidden="true"></div>
+
+                <div class="envPocket"></div>
+                <div class="envFront"></div>
+                <div class="envFlap"></div>
+                <div class="seal">❤</div>
+              </div>
+            </div>
+
+            <p class="hint">Presiona el corazón ❤</p>
+          </div>
+
+          <div class="ctaRow">
+            <button class="btn btnPrimary" id="toQuestion">Important questioonn !</button>
+            <button class="btn btnGhost" id="toggleCollage">Cambiar orden collague</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- SCREEN 2: Question -->
+      <section class="screen" id="screen-question">
+        <div class="card">
+          <svg class="top-heart" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M12 21s-7-4.35-9.6-8.9C.7 8.7 2.2 5.5 5.3 4.8c1.8-.4 3.5.3 4.7 1.6 1.2-1.3 2.9-2 4.7-1.6 3.1.7 4.6 3.9 2.9 7.3C19 16.65 12 21 12 21Z" fill="#e63957"/>
+          </svg>
+
+          <div class="questionWrap hand">
+            <!-- Cute bunny SVG (sin arma) -->
+            <svg class="bunny" viewBox="0 0 260 220" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <defs>
+                <filter id="s" x="-20%" y="-20%" width="140%" height="140%">
+                  <feDropShadow dx="0" dy="8" stdDeviation="7" flood-color="#000" flood-opacity=".18"/>
+                </filter>
+              </defs>
+              <g filter="url(#s)">
+                <ellipse cx="98" cy="60" rx="40" ry="56" fill="#fff"/>
+                <ellipse cx="150" cy="60" rx="40" ry="56" fill="#fff"/>
+                <ellipse cx="124" cy="120" rx="86" ry="74" fill="#fff"/>
+                <circle cx="95" cy="122" r="6" fill="#111"/>
+                <circle cx="155" cy="122" r="6" fill="#111"/>
+                <path d="M120 140c5 5 15 5 20 0" stroke="#111" stroke-width="4" stroke-linecap="round"/>
+                <ellipse cx="84" cy="140" rx="18" ry="12" fill="#ffb7c5" opacity=".7"/>
+                <ellipse cx="166" cy="140" rx="18" ry="12" fill="#ffb7c5" opacity=".7"/>
+                <path d="M200 140c0-9 10-16 19-9 9-7 19 0 19 9 0 16-19 28-19 28s-19-12-19-28Z" fill="#e63957"/>
+                <path d="M165 164c12 3 22 0 32-10" stroke="#111" stroke-width="4" stroke-linecap="round"/>
+              </g>
+            </svg>
+
+            <div class="qTitle">¿Quieres ser mi San Valentín? 🥺🥺🥺🥺</div>
+            <div class="qSub"> El botón No es  un poquito tímido 😅</div>
+
+            <div class="choiceRow" id="choiceArea">
+              <button class="btn btnYes" id="yesBtn">YES</button>
+              <button class="btn btnNo" id="noBtn">NO</button>
+            </div>
+
+            <div class="toast hand" id="toast">
+              <div style="font-size:18px; line-height:1.25;">
+                ¡Siiii! ❤️<br/>
+                Entonces hoy te invito a vamos a cenar esta noche y a una sorpresita.
+              </div>
+            </div>
+
+            <button class="tinyLink" id="backBtn">Volver a la carta</button>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </div>
+
+  <!-- Fullscreen Letter Modal -->
+  <div class="modal" id="letterModal" aria-hidden="true">
+    <div class="paper hand" id="letterPaper" role="dialog" aria-label="Carta">
+      <button class="closeBtn" id="closeLetter" type="button">Cerrar ✕</button>
+
+      <div class="paperDecor" aria-hidden="true">
+        <div class="corner tl"></div>
+        <div class="corner tr"></div>
+        <div class="corner bl"></div>
+        <div class="corner br"></div>
+        <div class="garland top">♥ ✿ ♥ ✿ ♥ ✿ ♥</div>
+        <div class="garland bottom">♥ ✿ ♥ ✿ ♥ ✿ ♥</div>
+        <div class="borderHearts"></div>
+        <div class="miniHearts">♥ ♥ ♥</div>
+        <div class="sticker">para ti 💖</div>
+      </div>
+
+      <div class="paperContent">
+        <div class="paperTitle hand editable" contenteditable="true" spellcheck="false">❤️❤️ Para mi AMORCITOOO ❤️❤️</div>
+
+        <div class="bodyText hand editable" contenteditable="true" spellcheck="false">
+No sabía que alguien pudiera llegar a mi vida y mover tantas cosas por dentro de mi pero tu lo hiciste.
+
+Desde que estás conmigo, he sentido algo que no es solo emoción. Es calma, es paz, es ilusión.
+Me haces sentir elegido
+
+Contigo me he sentido:
+
+Más yo.
+Más tranquilo.
+Más seguro.
+Más feliz.
+Mas de todo !.
+
+Y sí ajá jeje … probablemente alguien normal te habría escrito una carta en papel perooo 
+pensé: “¿y si le hago una página web?” algo diferente , no ?
+tambien que aveces soy un poco Nerd
+
+Porque así soy yo.
+Cuando algo me importa, lo construyo.
+Lo diseño.
+Le meto tiempo.
+Le meto cabeza.
+Le meto corazón.
+
+Tal vez no sea la forma más clásica o más romántica pero esta fue mi manera de hacer algo lindo para ti.
+
+Y la hice con mis manos tambien.
+Con mis ideas.
+Pensando en ti en cada línea.
+
+Si estoy aquí, si hice esto, si me tomé el tiempo para escribirte esta carta, para hacerte esta sorpresa, para pensar en cada detalle,
+es porque eres especial.
+Y porque lo que siento contigo es real.
+
+Gracias por llegar a mi vida y hacerla más interesante.
+Más divertida.
+Más bonita.
+
+TE AMOOOOOOO !!
+
+
+❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️
+        </div>
+
+        <div class="sig hand editable" contenteditable="true" spellcheck="false">Con amor, Tu CAMI</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="confetti" id="confetti" aria-hidden="true"></div>
+
+  <script>
+    // =========================
+    // 1) Collage background
+    // =========================
+    const PHOTOS = [
+      "assets/photos/photo01.jpg",
+      "assets/photos/photo02.jpg",
+      "assets/photos/photo03.jpg",
+      "assets/photos/photo04.jpg",
+      "assets/photos/photo05.jpg",
+      "assets/photos/photo06.jpg",
+      "assets/photos/photo07.jpg",
+      "assets/photos/photo08.jpg",
+      "assets/photos/photo09.jpg",
+    ];
+
+    const collage = document.getElementById("collage");
+    const shuffle = (arr) => arr.map(v => [Math.random(), v]).sort((a,b)=>a[0]-b[0]).map(x=>x[1]);
+
+    function buildCollage(order){
+      collage.innerHTML = "";
+      const tilesNeeded = 28; // repeats photos to fill the screen
+      const list = [];
+      for(let i=0;i<tilesNeeded;i++){
+        list.push(order[i % order.length]);
+      }
+
+      for(let i=0;i<list.length;i++){
+        const tile = document.createElement("div");
+        tile.className = "tile";
+
+        const isMobile = matchMedia("(max-width: 780px)").matches;
+        const r = Math.random();
+
+        let cspan = 1, rspan = 1;
+        if(!isMobile){
+          if(r > 0.78){ cspan = 2; rspan = 2; }
+          else if(r > 0.60){ cspan = 2; rspan = 1; }
+          else if(r > 0.46){ cspan = 1; rspan = 2; }
+        }else{
+          if(r > 0.82){ cspan = 2; rspan = 1; }
+        }
+
+        tile.style.setProperty("--cspan", cspan);
+        tile.style.setProperty("--rspan", rspan);
+
+        const img = new Image();
+        img.loading = "lazy";
+        img.decoding = "async";
+        img.src = list[i];
+        img.alt = "";
+        tile.appendChild(img);
+        collage.appendChild(tile);
+      }
+    }
+
+    let currentOrder = [...PHOTOS];
+    buildCollage(currentOrder);
+
+    document.getElementById("toggleCollage").addEventListener("click", () => {
+      currentOrder = shuffle(currentOrder);
+      buildCollage(currentOrder);
+    });
+
+    // =========================
+    // 2) Envelope + fullscreen letter
+    // =========================
+    const envelope = document.getElementById("envelope");
+    const modal = document.getElementById("letterModal");
+    const paper = document.getElementById("letterPaper");
+    const closeLetterBtn = document.getElementById("closeLetter");
+
+    function burstHearts(){
+      const hearts = ["💖","💘","💗","💞","❤️","✨","💕"];
+      const count = 16;
+
+      paper.querySelectorAll(".paperBurstHeart").forEach(n => n.remove());
+
+      const rect = paper.getBoundingClientRect();
+      for(let i=0;i<count;i++){
+        const s = document.createElement("span");
+        s.className = "paperBurstHeart hand";
+        s.textContent = hearts[Math.floor(Math.random()*hearts.length)];
+
+        const x = 18 + Math.random() * Math.max(0, rect.width - 36);
+        const y = 62 + Math.random() * 22;
+        s.style.left = x + "px";
+        s.style.top  = y + "px";
+        s.style.fontSize = (14 + Math.random()*16) + "px";
+        s.style.animationDelay = (Math.random()*0.14) + "s";
+        paper.appendChild(s);
+      }
+    }
+
+    function openLetter(){
+      envelope.classList.add("open");
+      document.body.classList.add("modalOpen");
+      modal.classList.add("show");
+      modal.setAttribute("aria-hidden", "false");
+
+      // burst after it appears a bit
+      setTimeout(() => burstHearts(), 220);
+    }
+
+    function closeLetter(){
+      modal.classList.remove("show");
+      modal.setAttribute("aria-hidden", "true");
+      document.body.classList.remove("modalOpen");
+      envelope.classList.remove("open");
+    }
+
+    // Only open when pressing the heart seal ❤
+    envelope.addEventListener("click", (e) => {
+      if(!e.target.closest(".seal")) return;
+      const isOpen = envelope.classList.contains("open");
+      if(isOpen) closeLetter();
+      else openLetter();
+    });
+
+    // Close when clicking outside paper
+    modal.addEventListener("click", (e) => {
+      if(e.target === modal) closeLetter();
+    });
+
+    closeLetterBtn.addEventListener("click", closeLetter);
+
+    // ESC closes
+    window.addEventListener("keydown", (e) => {
+      if(e.key === "Escape" && modal.classList.contains("show")) closeLetter();
+    });
+
+    // =========================
+    // 3) Screen navigation
+    // =========================
+    const screens = {
+      letter: document.getElementById("screen-letter"),
+      question: document.getElementById("screen-question"),
+    };
+    const show = (name) => {
+      Object.values(screens).forEach(s => s.classList.remove("active"));
+      screens[name].classList.add("active");
+      window.scrollTo({top:0, behavior:"smooth"});
+    };
+
+    document.getElementById("toQuestion").addEventListener("click", () => {
+      document.body.animate([{filter:"brightness(1)"},{filter:"brightness(.82)"},{filter:"brightness(1)"}],
+        {duration:420, easing:"ease"});
+      show("question");
+    });
+
+    document.getElementById("backBtn").addEventListener("click", () => show("letter"));
+
+    // =========================
+    // 4) “No” button that runs away
+    // =========================
+    const noBtn = document.getElementById("noBtn");
+    const choiceArea = document.getElementById("choiceArea");
+
+    function moveNo(){
+      const area = choiceArea.getBoundingClientRect();
+      const btn = noBtn.getBoundingClientRect();
+
+      const padding = 8;
+      const maxX = area.width - btn.width - padding;
+      const maxY = area.height - btn.height - padding;
+
+      const x = padding + Math.random() * Math.max(0, maxX - padding);
+      const y = padding + Math.random() * Math.max(0, maxY - padding);
+
+      noBtn.style.position = "absolute";
+      noBtn.style.left = x + "px";
+      noBtn.style.top  = y + "px";
+    }
+
+    noBtn.addEventListener("mouseenter", moveNo);
+    noBtn.addEventListener("touchstart", (e) => { e.preventDefault(); moveNo(); }, {passive:false});
+    noBtn.addEventListener("click", (e) => { e.preventDefault(); moveNo(); });
+
+    // =========================
+    // 5) Yes celebration (hearts confetti)
+    // =========================
+    const yesBtn = document.getElementById("yesBtn");
+    const toast = document.getElementById("toast");
+    const confetti = document.getElementById("confetti");
+
+    function heartsConfetti(){
+      confetti.innerHTML = "";
+      confetti.classList.add("show");
+      const hearts = ["💖","💘","💗","💞","❤️","💕"];
+      const count = 44;
+
+      for(let i=0;i<count;i++){
+        const s = document.createElement("span");
+        s.className = "heart";
+        s.textContent = hearts[Math.floor(Math.random()*hearts.length)];
+        s.style.left = (Math.random()*100) + "vw";
+        s.style.animationDelay = (Math.random()*0.22) + "s";
+        s.style.fontSize = (14 + Math.random()*18) + "px";
+        confetti.appendChild(s);
+      }
+      setTimeout(() => confetti.classList.remove("show"), 2100);
+    }
+
+    yesBtn.addEventListener("click", () => {
+      toast.classList.add("show");
+      heartsConfetti();
+      yesBtn.disabled = true;
+      yesBtn.style.filter = "grayscale(.15)";
+    });
+  </script>
+</body>
+</html>
